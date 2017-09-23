@@ -1,4 +1,4 @@
-package exchanges
+package main
 
 import (
 	"encoding/json"

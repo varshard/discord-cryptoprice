@@ -7,8 +7,6 @@ import (
 	"strings"
 	"syscall"
 
-	bx "github.com/varshard/cryptoprice/exchanges"
-
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -55,6 +53,6 @@ func messageCreated(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if strings.HasPrefix(inMsg, prefix) {
 		pair := strings.Trim(inMsg[len(prefix):], " ")
 
-		s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("%s %f", strings.ToUpper(pair), bx.GetLastestPrice(pair)))
+		s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("%s %f", strings.ToUpper(pair), GetLastestPrice(pair)))
 	}
 }
