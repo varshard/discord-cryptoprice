@@ -7,6 +7,8 @@ import (
 	"strings"
 	"syscall"
 
+	"exchanges"
+
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -51,8 +53,10 @@ func messageCreated(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	inMsg := strings.ToLower(m.Content)
 	if strings.HasPrefix(inMsg, prefix) {
-		pair := strings.Trim(inMsg[len(prefix):], " ")
+		suffix := strings.Trim(inMsg[len(prefix):], " ")
+		exchange := suffix[:strings.Index(suffix, " ")]
+		pair := strings.Trim(suffix[len(exchange):], " ")
 
-		s.ChannelMessageSend(m.ChannelID, fmt.Sprintf("%s %f", strings.ToUpper(pair), GetLastestPrice(pair)))
+		s.ChannelMessageSend(m.ChannelID, exchanges.GetLastestPrice(exchange, pair))
 	}
 }
