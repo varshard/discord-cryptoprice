@@ -27,9 +27,14 @@ func init() {
 	client = &http.Client{Timeout: time.Duration(timeout) * time.Second}
 	pairs = map[string]string{
 		"thb/btc": "1",
+		"btc/ltc": "2",
+		"btc/nmc": "3",
+		"btc/xpm": "7",
+		"btc/eth": "20",
 		"thb/eth": "21",
 		"thb/omg": "26",
 		"thb/das": "22",
+		"thb/evx": "28",
 	}
 }
 
